@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style01.css">
+    <title>Project Cap Stone - Using API</title>
+</head>
+<body>
+
+    <h1>Weather Forecast for <%= city.name %>, <%= city.country %> </h1> <!-- แสดงหัวข้อ Weather Forecast for ตามด้วย ข้อมูลจาก arrey ของ city => name , country ให้แสดงผลบนหน้าจอ -->
+    <ul>
+        <% data.list.forEach(item => { %> <!-- สร้างลูปขึ้นมาโดยนำข้อมูลจาก "data.list" โดยใช้ forEach ซึ่งจะนำทุกรายการใน "data.list" ขึ้นมาบนหน้าจอ -->
+            <li>
+                <p>Date and Time <%= item.dt_txt %></p> <!-- แสดงข้อมูล วัน และ เวลา โยนำข้อมูลมาจาก data.list โดยใช้คำสั่งเพื่อดึงข้อมุลมาจาก array: item => dt_txt  -->
+                <p>Temperature: <%= (item.main.temp - 273.15).toFixed(2) %> &deg;C</p> <!-- แสดงอุณหภูมิและเวลาสำหรับแต่ละรายการ โดยที่นำ อุณหภูมิ ที่มีหน่วยเควิน แปลงเป็น เซลเซียลและแสดงทศนิยม สองตำแหน่ง ("toFixed(2)"") -->
+            </li>
+        <% }); %>
+    </ul>
+        
+</body>
+</html>

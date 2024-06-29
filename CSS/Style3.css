@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+.flex-contrainer {
+    display: flex;
+    background: aqua;
+    flex-direction: column;
+    /* flex-direction: row; */
+    /* flex-direction: column-reverse; */
+    /* flex-wrap: wrap; */
+    /* justify-content: space-between; */
+    /* height: 100vh; */
+    align-items: flex-end;
+}
+.item {
+    background: orange;
+    border: 1px solid black;
+    width: 200px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 10px;
+    /* flex: 1; */
+}
+.item-3{
+    align-self: start;
+}
+.item-2 {
+    align-self: center;
+}

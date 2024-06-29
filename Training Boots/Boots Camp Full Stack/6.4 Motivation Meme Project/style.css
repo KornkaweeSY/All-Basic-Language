@@ -1,0 +1,27 @@
+body{
+    background-color: black;
+    color: white;
+}
+
+img{
+    border: 5px solid white;
+    margin-top: 10%; 
+    width: 100%;
+}
+
+div{
+    width: 50%;
+    margin-left: 25%; 
+}
+
+h1{
+    font-family: 'Libre Baskerville', serif;
+    text-align: center;
+    font-size: 3rem;
+}
+
+p{
+    font-family: 'Libre Baskerville', serif;
+    text-align: center;
+}
+

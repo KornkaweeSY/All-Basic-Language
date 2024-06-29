@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Float-contrainer</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .container {
+            width: 960px;
+            margin: 30px auto;
+        }
+        body {
+            line-height: 1.4em;
+        }
+        .box {
+            background: #f4f4f4;
+            border: 1px solid #333;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        #box-2 {
+             float: left;
+             width: 70%;
+        }
+        #box-3 {
+             float: right;
+             width: 30%;
+        }
+        .clr {
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="box-1" class="box">
+            <h1>Title1</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione perferendis, illo eaque debitis reprehenderit quidem fuga nam. Architecto excepturi autem, cupiditate molestiae aut, iure voluptas eius cum impedit magni harum!</p>
+        </div>
+        <div id="box-2" class="box">
+            <h1>Title2</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione perferendis, illo eaque debitis reprehenderit quidem fuga nam. Architecto excepturi autem, cupiditate molestiae aut, iure voluptas eius cum impedit magni harum!</p>
+        </div>
+        <div id="box-3" class="box">
+            <h1>Title3</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione perferendis, illo eaque debitis reprehenderit quidem fuga nam. Architecto excepturi autem, cupiditate molestiae aut, iure voluptas eius cum impedit magni harum!</p>
+        </div>
+        <div class="clr"></div>
+        <div id="box-4" class="box">
+            <h1>Title4</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione perferendis, illo eaque debitis reprehenderit quidem fuga nam. Architecto excepturi autem, cupiditate molestiae aut, iure voluptas eius cum impedit magni harum!</p>
+        </div>
+    </div>
+    
+</body>
+</html>

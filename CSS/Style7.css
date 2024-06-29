@@ -1,0 +1,24 @@
+/* a {
+    background-color: orange;
+}
+a[target] {
+    background-color: red;
+    color: white;
+}
+a[target='_blank'] {
+    background-color: black;
+    color: pink;
+}
+a[target='_self'] {
+    color: plum;
+} */
+
+input[type='email'] , input[type='text'] {
+    width: 80%;
+    margin-bottom: 5px;
+}
+input[type='submit'] {
+    color: white;
+    background-color: black;
+    border-radius: 10px;
+}

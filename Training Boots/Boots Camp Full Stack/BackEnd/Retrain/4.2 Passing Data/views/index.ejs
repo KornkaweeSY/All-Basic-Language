@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Name Letters</title>
+</head>
+
+<body>
+  <!-- Write your code here -->
+  <% if (locals.numberOfnames) {%>  <!-- locals เป็นการเก็บและตรวจสอบข้อมูลของ numberOfname เพื่อมาแสดงผลบนหน้าจอ -->
+    <h1>
+        there are <%= numberOfnames %> letter in your name <!-- แสดงผลบนหน้าจอ โดยมีค่า const numberOfname ที่เป็นจำนวน fName + lName อยู่ใน js -->
+    </h1>
+    <% } else { %>
+  <h1>
+    <!-- <strong>Enter your name below 👇</strong> -->
+    <%= titleHead %>
+  </h1>
+    <% } %> 
+  <form action="/submit" method="POST">
+    <input type="text" name="fName" placeholder="First name">
+    <input type="text" name="lName" placeholder="Last name">
+    <input type="submit" value="OK">
+  </form>
+</body>
+
+</html>

@@ -1,0 +1,56 @@
+body {
+    background-color: grey;
+    color: white;
+    text-align: center;
+    padding: 100px;
+}
+h1 {
+    display: none;
+
+}
+
+/* smart phone */
+@media only screen and (max-width:500px) {
+    body {
+        background-color: red;
+    }
+    #smartphone h1{
+        display: block;
+    }
+}
+/* Tablet */
+@media (min-width:501px) and (max-width:768px) {
+    body{
+        background-color: turquoise;
+    }
+    #Ipad h1{
+        display: block;
+    }
+}
+/* laptop&destop */
+@media (min-width:769px) and (max-width:1200px) {
+    body {
+        background-color: green;
+    }
+    #Laptop h1{
+        display: block;
+    }
+}
+/* Wildscreen */
+@media (min-width:1201px)  {
+    body {
+        background-color: black;
+    }
+    #Wildscreen h1{
+        display: block;
+    }
+}
+/* Landscape */
+@media (max-height:500px) {
+    body {
+        background-color: orange;
+    }
+    #Landscape h1{
+        display: block;
+    }
+}

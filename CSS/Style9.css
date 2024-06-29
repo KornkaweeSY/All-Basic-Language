@@ -1,0 +1,32 @@
+/* .is-required::after {
+    content: "*";
+    color: red;
+    padding-left: 2px;
+} */
+body {
+    background-color: #333;
+    color:white;
+}
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+header>h1 {
+    font-size: 4rem;
+    margin: 1rem;
+}
+header::after{
+    content: "";
+    background: url(https://cdn.pixabay.com/photo/2017/11/27/21/31/computer-2982270_1280.jpg) no-repeat center center/cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.5;
+} 
