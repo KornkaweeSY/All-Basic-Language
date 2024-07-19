@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Sum</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <input type="number" id="quantity" placeholder="Enter quantity">
+    <input type="number" id="unitPrice" placeholder="Enter unit price">
+    <button id="calculateButton">Calculate</button>
+    <div id="totalWithVAT">Total with VAT: </div>
+
+    <script>
+        function calculateSum(quantity, unitPrice) {
+            let sum = quantity * unitPrice;
+            let vatRate = 7 / 100; // 7%
+            let totalWithVAT = sum + (sum * vatRate);
+            return totalWithVAT;
+        }
+
+        $(document).on('click', '#calculateButton', function() {
+            let quantity = parseFloat($('#quantity').val());
+            let unitPrice = parseFloat($('#unitPrice').val());
+
+            if (!isNaN(quantity) && !isNaN(unitPrice)) {
+                let totalWithVAT = calculateSum(quantity, unitPrice);
+                $('#totalWithVAT').text('Total with VAT: ' + totalWithVAT.toFixed(2));
+            } else {
+                alert('Please enter valid numbers for quantity and unit price.');
+            }
+        });
+    </script>
+</body>
+</html>

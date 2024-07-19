@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quotations</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        .handle {
+            cursor: move;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-auto pe-0">
+            <button style="width: 131px!important;" id="add_comment" type="button" class="ms-2 btn btn-secondary text-nowrap">
+                เพิ่มข้อความ
+                <span class="ms-2 border border-left-0 py-2"></span>
+                <i class="ps-2 fa fa-t"></i>
+            </button>
+        </div>
+    </div>
+    <div class="table-responsive mt-3">
+        <table class="table table-hover" id="table-main">
+            <thead class="text-center table-light">
+                <tr>
+                    <th>ลำดับ</th>
+                    <th>รายละเอียด</th>
+                    <th>จำนวน</th>
+                    <th>หน่วย</th>
+                    <th>หน่วยล่ะ</th>
+                    <th>ราคารวมภาษี</th>
+                    <th>จัดการ</th>
+                </tr>
+            </thead>
+            <tbody id="tbd-quotations">
+                <?php
+                $sql = "SELECT *,quotations_detail.product_price,ROW_NUMBER() OVER (ORDER BY quotations_detail_id asc) AS row_id FROM quotations_detail
+                join products on products.product_code = quotations_detail.product_code
+                where quotations_header_id=:qt order by quotations_detail_id asc";
+                $stmt = $conn->prepare($sql);
+                $stmt->execute([':qt' => $qt]);
+                $rows = 0;
+                $qoutation_unit = [
+                    1 => 'แพค',
+                    11 => 'ใบ',
+                    2 => 'ชิ้น',
+                    3 => 'ใบ',
+                    4 => 'ชิ้น',
+                    5 => '',
+                    6 => 'แพค',
+                ];
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    $product_name = ($row['label_type'] != 0 ? $row['custom_product_name'] : $row['product_name']);
+                    $product_name .= (isset($row['cap_code']) ? " + ฝา" : "");
+                    $rows += 1;
+                ?>
+                <tr>
+                    <td class="text-center"><?= $row['row_id'] ?></td>
+                    <td><?= $product_name ?></td>
+                    <td class="text-end pe-4"><?= $row['product_amount'] ?></td>
+                    <td class="text-center"><?= $qoutation_unit[($row['product_type_id'] == 1 ? 11 : $row['category_id'])] ?></td>
+                    <td class="text-end pe-4"><?= $row['product_price'] ?></td>
+                    <td class="text-end pe-4"><?= number_format($row['total_price'], 3) ?> บาท</td>
+                    <td class="text-center">
+                        <button type="button" class="btn btn-sm btn-danger btn-delete" data-id="<?= $row['quotations_detail_id'] ?>" title="ลบข้อมูลสินค้านี้">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+<script>
+$(document).on('click', '#add_comment', function(e) {
+    let btnComment = $(e.target);
+    let rowProduct = $('[name="checknumber"]').length;
+    const customer_id = $("#customer_id").val();
+    const tbl_body = $('#tbd-quotations');
+    let content_comment = $(`
+        <tr class="row_${rowProduct + 1}">
+            <td>
+                <div class="d-flex align-items-center justify-content-center">
+                    <i class="fa-solid fa-grip me-2 opacity-50 handle"></i>
+                    <div class="form-check">
+                        <input type="checkbox" name="checknumber" class="form-check-input me-2" value="null">
+                    </div>
+                    <label for="checknumber" class="form-check-label">${rowProduct + 1}</label>
+                </div>
+            </td>
+            <td colspan="5">
+                <input list="order_comment_list${rowProduct+1}" name="order_comment" class="form-control text-danger" />
+                <datalist id="order_comment_list${rowProduct+1}"></datalist>
+            </td>
+            <td class="text-center align-middle">
+                <button type="button" class="btn btn-sm btn-success btn-save-comment">save</button>
+            </td>
+        </tr>
+    `);
+
+    $(content_comment).hide().appendTo(tbl_body).fadeIn(350);
+
+    // Uncomment and use this AJAX request to fetch datalist options if needed
+    // $.ajax({
+    //     url: '../api/get_order.php',
+    //     method: 'post',
+    //     data: {
+    //         method_type: 'get_order_comment',
+    //         customer_id: customer_id
+    //     },
+    //     dataType: 'json',
+    //     success: function(data) {
+    //         if (data && Array.isArray(data.options)) {
+    //             content_comment.find(`#order_comment_list${rowProduct + 1}`).empty();
+    //             data.options.forEach(function(option) {
+    //                 content_comment.find(`#order_comment_list${rowProduct + 1}`).append(
+    //                     '<option>' + option + '</option>'
+    //                 );
+    //             });
+    //         }
+    //     },
+    //     error: function(error) {
+    //         console.error('Error fetching datalist options:', error);
+    //     }
+    // });
+});
+</script>
+</body>
+</html>
